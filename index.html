@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MCP Notes</title>
+<title>MCP Notes — Notes that answer your questions</title>
+<meta name="description" content="MCP Notes is a native macOS Markdown note app with semantic search and a built-in MCP server, so Claude and other AI tools can search your notes during a conversation.">
 <style>
   :root{
     --bg:#F7F4EC;
@@ -72,7 +73,7 @@
   .cta-row{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:40px;}
   .btn{
     font-family:inherit;font-size:14px;font-weight:600;padding:11px 18px;border-radius:11px;cursor:pointer;border:1px solid var(--line);
-    background:#fff;color:var(--ink);
+    background:#fff;color:var(--ink);display:inline-flex;align-items:center;gap:6px;
   }
   .btn.primary{background:var(--ink);color:#fff;border-color:var(--ink);}
   .btn:hover{border-color:#c9c3b1;}
@@ -118,6 +119,7 @@
   .outputs .head{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;}
   .outputs .head .t{font-weight:600;font-size:15px;}
   .outputs .empty{color:var(--dim);font-size:13.5px;margin:6px 0 0;}
+  .outputs a.headlink{color:var(--ink);}
 
   .footer-card{
     background:var(--accent-soft);border:1px solid #d5e1fa;border-radius:var(--radius);padding:18px 22px;font-size:14px;color:#324a86;
@@ -136,17 +138,17 @@
       <span>Chat</span><span class="active">Notes</span><span>Code</span>
     </div>
     <nav class="nav">
-      <div class="item"><span class="ic">＋</span> Новая заметка</div>
-      <div class="item active"><span class="ic">▦</span> Все заметки</div>
-      <div class="item"><span class="ic">⌗</span> Теги</div>
-      <div class="item"><span class="ic">⏱</span> Недавние</div>
-      <div class="item"><span class="ic">⏚</span> MCP-сервер <span class="badge">Beta</span></div>
-      <div class="item"><span class="ic">⚙</span> Настройки</div>
+      <div class="item"><span class="ic">＋</span> New Note</div>
+      <div class="item active"><span class="ic">▦</span> All Notes</div>
+      <div class="item"><span class="ic">⌗</span> Tags</div>
+      <div class="item"><span class="ic">⏱</span> Recent</div>
+      <div class="item"><span class="ic">⏚</span> MCP Server <span class="badge">Beta</span></div>
+      <div class="item"><span class="ic">⚙</span> Settings</div>
     </nav>
     <div class="recents">
-      <div class="label">Заметки</div>
-      <div class="row">Camino de Santiago — сезонность</div>
-      <div class="row">RAG — выбор хранилища</div>
+      <div class="label">Notes</div>
+      <div class="row">Camino de Santiago — best season</div>
+      <div class="row">RAG — choosing a vector store</div>
       <div class="row">Roadmap Q3</div>
     </div>
   </aside>
@@ -156,54 +158,54 @@
 
     <div class="content">
       <div class="hero">
-        <h1>Заметки, которые сами отвечают на вопросы</h1>
-        <p class="lede">Markdown-заметки в вашем iCloud Drive, с семантическим поиском и MCP-сервером — Claude может искать в них прямо во время разговора.</p>
+        <h1>Notes that answer their own questions</h1>
+        <p class="lede">Markdown notes in your iCloud Drive, with semantic search and a built-in MCP server — so Claude can search them right in the middle of a conversation.</p>
         <div class="cta-row">
-          <button class="btn primary">↓ Скачать для macOS</button>
-          <button class="btn">Подключить к Claude</button>
+          <a class="btn primary" href="https://apps.apple.com/app/mcp-notes/id6762989069" target="_blank" rel="noopener">↓ Download for macOS</a>
+          <a class="btn" href="https://github.com/sergeydi/MCP-Notes#mcp-server-setup" target="_blank" rel="noopener">Connect to Claude</a>
         </div>
       </div>
 
-      <p class="section-label">Как это выглядит</p>
+      <p class="section-label">What it looks like</p>
       <div class="convo">
-        <div class="msg-user"><div class="pill">Когда лучше идти по Камино де Сантьяго — посмотри в моих заметках</div></div>
+        <div class="msg-user"><div class="pill">When's the best time to walk the Camino de Santiago — check my notes</div></div>
 
         <div class="msg-assistant">
           <div class="card">
-            <div class="src">Из заметки «Camino de Santiago — сезонность»:</div>
-            <p>Маршруты открыты весь год, но комфортнее всего в <b>апреле–июне</b> и <b>сентябре–октябре</b>. Летом (июль–август) очень жарко и людно, зимой некоторые горные участки могут быть закрыты.</p>
+            <div class="src">From your note "Camino de Santiago — best season":</div>
+            <p>Routes are open year-round, but it's most comfortable in <b>April–June</b> and <b>September–October</b>. Summer (July–August) is very hot and crowded, and some mountain sections can be closed in winter.</p>
           </div>
         </div>
 
-        <div class="msg-user"><div class="pill">А что там по нормам ручной клади на этот рейс?</div></div>
+        <div class="msg-user"><div class="pill">And what are the carry-on limits for that flight?</div></div>
 
         <div class="msg-assistant">
           <div class="card">
-            <div class="src">Найдена заметка «Camino — нормы ручной клади»:</div>
+            <div class="src">Found in note "Camino — carry-on limits":</div>
             <ul>
-              <li>Вес: до <b>10 кг</b></li>
-              <li>Размеры: <b>55 × 40 × 20–25 см</b></li>
+              <li>Weight: up to <b>10 kg</b></li>
+              <li>Size: <b>55 × 40 × 20–25 cm</b></li>
             </ul>
           </div>
-          <div class="readline">✓ Прочитано из 1 заметки</div>
+          <div class="readline">✓ Read from 1 note</div>
         </div>
       </div>
 
-      <p class="section-label">Возможности</p>
+      <p class="section-label">Features</p>
       <div class="settings-card">
         <div class="setting-row">
           <span class="ic">◎</span>
           <div style="flex:1">
-            <div class="label">Семантический поиск</div>
-            <div class="desc">Находит заметки по смыслу, а не только по точным словам</div>
+            <div class="label">Semantic search (RAG)</div>
+            <div class="desc">Finds notes by meaning, not just exact keywords — works across languages</div>
           </div>
           <div class="switch on" aria-hidden="true"><span class="knob"></span></div>
         </div>
         <div class="setting-row">
           <span class="ic">⏚</span>
           <div style="flex:1">
-            <div class="label">MCP-сервер</div>
-            <div class="desc">Открывает заметки для Claude и других AI-инструментов</div>
+            <div class="label">MCP server</div>
+            <div class="desc">Exposes your notes to Claude and other MCP-compatible AI tools</div>
           </div>
           <div class="switch on" aria-hidden="true"><span class="knob"></span></div>
         </div>
@@ -211,32 +213,32 @@
           <span class="ic">⛓</span>
           <div style="flex:1">
             <div class="label">Wikilinks</div>
-            <div class="desc">Связывайте заметки друг с другом, как в графе знаний</div>
+            <div class="desc">Link notes together with [[Note Name]] and a force-directed graph view</div>
           </div>
-          <div class="switch" aria-hidden="true"><span class="knob"></span></div>
+          <div class="switch on" aria-hidden="true"><span class="knob"></span></div>
         </div>
         <div class="setting-row">
           <span class="ic">☁</span>
           <div style="flex:1">
-            <div class="label">Синхронизация iCloud</div>
-            <div class="desc">Заметки доступны на всех ваших устройствах</div>
+            <div class="label">iCloud sync</div>
+            <div class="desc">Plain .md files that sync automatically across your Mac devices</div>
           </div>
           <div class="switch on" aria-hidden="true"><span class="knob"></span></div>
         </div>
       </div>
 
-      <p class="section-label">Открытый код</p>
+      <p class="section-label">Open source</p>
       <div class="outputs">
-        <div class="head"><span class="t">Исходники на GitHub</span><span>↗</span></div>
-        <p class="empty">MIT License · Swift 6 · SwiftUI — форкайте, добавляйте свой эмбеддер.</p>
+        <div class="head"><span class="t">Source on GitHub</span><a class="headlink" href="https://github.com/sergeydi/MCP-Notes" target="_blank" rel="noopener">↗</a></div>
+        <p class="empty">MIT License · Swift 6 · SwiftUI — fork it, bring your own embedder.</p>
       </div>
 
       <div class="footer-card">
-        Подключите MCP Notes к Claude Code и проверяйте заметки прямо из любой сессии — без копипасты.
+        Connect MCP Notes to Claude Code and check your notes right from any session — no copy-paste required.
       </div>
     </div>
 
-    <footer class="page">MCP Notes · macOS 26+ · <a href="#">GitHub</a> · <a href="#">Документация MCP</a></footer>
+    <footer class="page">MCP Notes · macOS 26+ · <a href="https://github.com/sergeydi/MCP-Notes" target="_blank" rel="noopener">GitHub</a> · <a href="https://modelcontextprotocol.io" target="_blank" rel="noopener">MCP Docs</a></footer>
   </main>
 </div>
 </body>
