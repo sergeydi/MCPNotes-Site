@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MCP Notes</title>
+<style>
+  :root{
+    --bg:#F7F4EC;
+    --dot:#DAD5C6;
+    --ink:#1B1A17;
+    --dim:#8A8678;
+    --line:#E7E2D4;
+    --card:#FFFFFF;
+    --pill:#1B1A17;
+    --accent:#3B6FE0;
+    --accent-soft:#EAF0FD;
+    --radius:18px;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;background:var(--bg);color:var(--ink);}
+  body{
+    font-family:"Inter","SF Pro Text",ui-sans-serif,-apple-system,Segoe UI,sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:var(--accent);text-decoration:none;}
+  a:focus-visible, button:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:8px;}
+
+  .bgdots{
+    position:fixed;inset:0;z-index:0;pointer-events:none;
+    background-image:radial-gradient(var(--dot) 1.4px, transparent 1.4px);
+    background-size:26px 26px;
+  }
+
+  .shell{position:relative;z-index:1;display:grid;grid-template-columns:248px 1fr;min-height:100vh;}
+  @media (max-width:820px){.shell{grid-template-columns:1fr;}.sidebar{display:none;}}
+
+  .sidebar{padding:20px 16px;border-right:1px solid var(--line);background:rgba(255,255,255,0.55);backdrop-filter:blur(6px);}
+  .traffic{display:flex;gap:8px;margin-bottom:22px;padding-left:4px;}
+  .traffic span{width:11px;height:11px;border-radius:50%;display:block;}
+  .traffic span:nth-child(1){background:#EF6A5F;}
+  .traffic span:nth-child(2){background:#F4BD4F;}
+  .traffic span:nth-child(3){background:#62C654;}
+
+  .tabs{display:flex;gap:4px;background:#EFEBE0;border-radius:10px;padding:4px;margin-bottom:20px;font-size:13px;}
+  .tabs span{padding:6px 10px;border-radius:7px;color:var(--dim);}
+  .tabs span.active{background:#fff;color:var(--ink);font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.06);}
+
+  .nav{display:flex;flex-direction:column;gap:2px;font-size:14.5px;}
+  .nav .item{display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:9px;color:#3a382f;}
+  .nav .item.active{background:#fff;border:1px solid var(--line);font-weight:600;}
+  .nav .item .ic{width:16px;text-align:center;opacity:.7;}
+  .nav .badge{margin-left:auto;font-size:10.5px;color:var(--dim);background:#EFEBE0;padding:2px 6px;border-radius:6px;}
+
+  .recents{margin-top:22px;font-size:12px;color:var(--dim);}
+  .recents .label{display:flex;justify-content:space-between;margin-bottom:8px;text-transform:uppercase;letter-spacing:.04em;font-size:11px;}
+  .recents .row{padding:6px 2px;color:#52503f;}
+
+  .main{padding:0 0 90px;}
+  .topbar{
+    display:flex;align-items:center;gap:8px;padding:22px 32px 14px;
+    font-size:19px;font-weight:600;
+  }
+  .topbar .more{color:var(--dim);margin-left:4px;font-weight:400;}
+
+  .content{max-width:880px;margin:0 auto;padding:18px 32px 0;}
+
+  .hero{margin-bottom:30px;}
+  .hero h1{font-size:clamp(26px,3.6vw,38px);line-height:1.15;margin:0 0 12px;font-weight:650;letter-spacing:-0.01em;}
+  .hero .lede{color:var(--dim);font-size:16px;max-width:520px;margin:0 0 22px;}
+
+  .cta-row{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:40px;}
+  .btn{
+    font-family:inherit;font-size:14px;font-weight:600;padding:11px 18px;border-radius:11px;cursor:pointer;border:1px solid var(--line);
+    background:#fff;color:var(--ink);
+  }
+  .btn.primary{background:var(--ink);color:#fff;border-color:var(--ink);}
+  .btn:hover{border-color:#c9c3b1;}
+
+  .convo{display:flex;flex-direction:column;gap:14px;margin-bottom:46px;}
+  .msg-user{align-self:flex-end;max-width:78%;}
+  .pill{
+    background:var(--pill);color:#fff;padding:13px 20px;border-radius:22px;font-size:15px;line-height:1.4;
+  }
+  .msg-assistant{align-self:flex-start;max-width:86%;}
+  .card{
+    background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+    padding:18px 22px;box-shadow:0 1px 2px rgba(0,0,0,0.03);
+  }
+  .card .src{color:var(--dim);font-size:13px;margin-bottom:8px;}
+  .card p{margin:0 0 4px;font-size:15px;line-height:1.55;}
+  .card b{font-weight:650;}
+  .card ul{margin:8px 0 0;padding-left:20px;font-size:15px;}
+  .card li{margin-bottom:4px;}
+  .readline{display:flex;align-items:center;gap:6px;color:var(--dim);font-size:12.5px;margin-top:4px;align-self:flex-start;}
+
+  .section-label{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--dim);margin:0 0 14px;font-weight:600;}
+
+  .settings-card{
+    background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:8px;margin-bottom:40px;
+  }
+  .setting-row{
+    display:flex;align-items:center;gap:14px;padding:14px 14px;border-bottom:1px solid var(--line);
+  }
+  .setting-row:last-child{border-bottom:none;}
+  .setting-row .ic{font-size:17px;width:22px;text-align:center;}
+  .setting-row .label{font-weight:600;font-size:15px;flex:1;}
+  .setting-row .desc{color:var(--dim);font-size:13px;margin-top:2px;}
+
+  .switch{width:42px;height:25px;border-radius:13px;background:#E3DECF;position:relative;flex-shrink:0;}
+  .switch.on{background:var(--accent);}
+  .switch .knob{position:absolute;top:2.5px;left:3px;width:20px;height:20px;border-radius:50%;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,0.2);}
+  .switch.on .knob{left:auto;right:3px;}
+
+  .outputs{
+    background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:20px 22px;margin-bottom:18px;
+  }
+  .outputs .head{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;}
+  .outputs .head .t{font-weight:600;font-size:15px;}
+  .outputs .empty{color:var(--dim);font-size:13.5px;margin:6px 0 0;}
+
+  .footer-card{
+    background:var(--accent-soft);border:1px solid #d5e1fa;border-radius:var(--radius);padding:18px 22px;font-size:14px;color:#324a86;
+  }
+
+  footer.page{max-width:880px;margin:36px auto 0;padding:18px 32px;color:var(--dim);font-size:12.5px;border-top:1px solid var(--line);}
+</style>
+</head>
+<body>
+<div class="bgdots" aria-hidden="true"></div>
+
+<div class="shell">
+  <aside class="sidebar" aria-hidden="true">
+    <div class="traffic"><span></span><span></span><span></span></div>
+    <div class="tabs">
+      <span>Chat</span><span class="active">Notes</span><span>Code</span>
+    </div>
+    <nav class="nav">
+      <div class="item"><span class="ic">＋</span> Новая заметка</div>
+      <div class="item active"><span class="ic">▦</span> Все заметки</div>
+      <div class="item"><span class="ic">⌗</span> Теги</div>
+      <div class="item"><span class="ic">⏱</span> Недавние</div>
+      <div class="item"><span class="ic">⏚</span> MCP-сервер <span class="badge">Beta</span></div>
+      <div class="item"><span class="ic">⚙</span> Настройки</div>
+    </nav>
+    <div class="recents">
+      <div class="label">Заметки</div>
+      <div class="row">Camino de Santiago — сезонность</div>
+      <div class="row">RAG — выбор хранилища</div>
+      <div class="row">Roadmap Q3</div>
+    </div>
+  </aside>
+
+  <main class="main">
+    <div class="topbar">MCP Notes <span class="more">·</span></div>
+
+    <div class="content">
+      <div class="hero">
+        <h1>Заметки, которые сами отвечают на вопросы</h1>
+        <p class="lede">Markdown-заметки в вашем iCloud Drive, с семантическим поиском и MCP-сервером — Claude может искать в них прямо во время разговора.</p>
+        <div class="cta-row">
+          <button class="btn primary">↓ Скачать для macOS</button>
+          <button class="btn">Подключить к Claude</button>
+        </div>
+      </div>
+
+      <p class="section-label">Как это выглядит</p>
+      <div class="convo">
+        <div class="msg-user"><div class="pill">Когда лучше идти по Камино де Сантьяго — посмотри в моих заметках</div></div>
+
+        <div class="msg-assistant">
+          <div class="card">
+            <div class="src">Из заметки «Camino de Santiago — сезонность»:</div>
+            <p>Маршруты открыты весь год, но комфортнее всего в <b>апреле–июне</b> и <b>сентябре–октябре</b>. Летом (июль–август) очень жарко и людно, зимой некоторые горные участки могут быть закрыты.</p>
+          </div>
+        </div>
+
+        <div class="msg-user"><div class="pill">А что там по нормам ручной клади на этот рейс?</div></div>
+
+        <div class="msg-assistant">
+          <div class="card">
+            <div class="src">Найдена заметка «Camino — нормы ручной клади»:</div>
+            <ul>
+              <li>Вес: до <b>10 кг</b></li>
+              <li>Размеры: <b>55 × 40 × 20–25 см</b></li>
+            </ul>
+          </div>
+          <div class="readline">✓ Прочитано из 1 заметки</div>
+        </div>
+      </div>
+
+      <p class="section-label">Возможности</p>
+      <div class="settings-card">
+        <div class="setting-row">
+          <span class="ic">◎</span>
+          <div style="flex:1">
+            <div class="label">Семантический поиск</div>
+            <div class="desc">Находит заметки по смыслу, а не только по точным словам</div>
+          </div>
+          <div class="switch on" aria-hidden="true"><span class="knob"></span></div>
+        </div>
+        <div class="setting-row">
+          <span class="ic">⏚</span>
+          <div style="flex:1">
+            <div class="label">MCP-сервер</div>
+            <div class="desc">Открывает заметки для Claude и других AI-инструментов</div>
+          </div>
+          <div class="switch on" aria-hidden="true"><span class="knob"></span></div>
+        </div>
+        <div class="setting-row">
+          <span class="ic">⛓</span>
+          <div style="flex:1">
+            <div class="label">Wikilinks</div>
+            <div class="desc">Связывайте заметки друг с другом, как в графе знаний</div>
+          </div>
+          <div class="switch" aria-hidden="true"><span class="knob"></span></div>
+        </div>
+        <div class="setting-row">
+          <span class="ic">☁</span>
+          <div style="flex:1">
+            <div class="label">Синхронизация iCloud</div>
+            <div class="desc">Заметки доступны на всех ваших устройствах</div>
+          </div>
+          <div class="switch on" aria-hidden="true"><span class="knob"></span></div>
+        </div>
+      </div>
+
+      <p class="section-label">Открытый код</p>
+      <div class="outputs">
+        <div class="head"><span class="t">Исходники на GitHub</span><span>↗</span></div>
+        <p class="empty">MIT License · Swift 6 · SwiftUI — форкайте, добавляйте свой эмбеддер.</p>
+      </div>
+
+      <div class="footer-card">
+        Подключите MCP Notes к Claude Code и проверяйте заметки прямо из любой сессии — без копипасты.
+      </div>
+    </div>
+
+    <footer class="page">MCP Notes · macOS 26+ · <a href="#">GitHub</a> · <a href="#">Документация MCP</a></footer>
+  </main>
+</div>
+</body>
+</html>
