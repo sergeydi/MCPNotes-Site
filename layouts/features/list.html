@@ -1,0 +1,21 @@
+{{ define "main" }}
+<div class="breadcrumb"><a href="{{ "" | relURL }}">MCP Notes</a> / Features</div>
+
+<div class="hero">
+  <h1>{{ .Title }}</h1>
+  <p class="lede">{{ .Params.summary }}</p>
+</div>
+
+<div class="settings-card">
+  {{ range .Pages.ByWeight }}
+  <a class="setting-row" href="{{ .RelPermalink }}">
+    <span class="ic">{{ .Params.icon }}</span>
+    <div style="flex:1">
+      <div class="label">{{ .Title }}</div>
+      <div class="desc">{{ .Params.summary }}</div>
+    </div>
+    <span class="chev">→</span>
+  </a>
+  {{ end }}
+</div>
+{{ end }}

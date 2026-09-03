@@ -1,0 +1,67 @@
+{{ define "main" }}
+<div class="hero">
+  <h1>{{ .Params.hero_title }}</h1>
+  <p class="lede">{{ .Params.lede }}</p>
+  <div class="cta-row">
+    <a class="badge-link" href="{{ site.Params.appStoreUrl }}" target="_blank" rel="noopener">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/0/0e/Download_on_the_Mac_App_Store_Badge_US-UK_RGB_wht.svg" alt="Download on the Mac App Store" height="44">
+    </a>
+    <a class="badge-link" href="{{ site.Params.appStoreUrl }}" target="_blank" rel="noopener">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg" alt="Download on the App Store" height="44">
+    </a>
+  </div>
+</div>
+
+<p class="section-label">What it looks like</p>
+<div class="convo">
+  <div class="msg-user"><div class="pill">When's the best time to walk the Camino de Santiago — check my notes</div></div>
+
+  <div class="msg-assistant">
+    <div class="card">
+      <div class="src">From your note "Camino de Santiago — best season":</div>
+      <p>Routes are open year-round, but it's most comfortable in <b>April–June</b> and <b>September–October</b>. Summer (July–August) is very hot and crowded, and some mountain sections can be closed in winter.</p>
+    </div>
+  </div>
+
+  <div class="msg-user"><div class="pill">And what are the carry-on limits for that flight?</div></div>
+
+  <div class="msg-assistant">
+    <div class="card">
+      <div class="src">Found in note "Camino — carry-on limits":</div>
+      <ul>
+        <li>Weight: up to <b>10 kg</b></li>
+        <li>Size: <b>55 × 40 × 20–25 cm</b></li>
+      </ul>
+    </div>
+    <div class="readline">✓ Read from 1 note</div>
+  </div>
+</div>
+
+<div class="section-head">
+  <p class="section-label">Features</p>
+  <a class="see-all" href="{{ "features/" | relURL }}">See all →</a>
+</div>
+<div class="settings-card">
+  {{ $featuresSection := site.GetPage "/features" }}
+  {{ range $featuresSection.Pages.ByWeight }}
+  <a class="setting-row" href="{{ .RelPermalink }}">
+    <span class="ic">{{ .Params.icon }}</span>
+    <div style="flex:1">
+      <div class="label">{{ .Title }}</div>
+      <div class="desc">{{ .Params.summary }}</div>
+    </div>
+    <span class="chev">→</span>
+  </a>
+  {{ end }}
+</div>
+
+<p class="section-label">Open source</p>
+<div class="outputs">
+  <div class="head"><span class="t">Source on GitHub</span><a class="headlink" href="{{ site.Params.githubUrl }}" target="_blank" rel="noopener">↗</a></div>
+  <p class="empty">MIT License · Swift 6 · SwiftUI — fork it, bring your own embedder.</p>
+</div>
+
+<div class="footer-card">
+  Connect MCP Notes to Claude Code and check your notes right from any session — no copy-paste required.
+</div>
+{{ end }}

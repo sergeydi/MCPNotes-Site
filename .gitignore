@@ -8,3 +8,8 @@
 
 # Node (in case a build tool is added later)
 node_modules/
+
+# Hugo
+public/
+resources/
+.hugo_build.lock
