@@ -1,4 +1,4 @@
-baseURL = "https://sergeydi.github.io/MCPNotes-Site/"
+baseURL = "https://mcp-notes.com/"
 title = "MCP Notes — Your second brain, on your devices"
 disableKinds = ["taxonomy", "term"]
 

@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://sergeydi.github.io/MCPNotes-Site/sitemap.xml
+Sitemap: https://mcp-notes.com/sitemap.xml
