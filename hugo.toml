@@ -1,9 +1,9 @@
 baseURL = "https://sergeydi.github.io/MCPNotes-Site/"
-title = "MCP Notes — Notes that answer your questions"
+title = "MCP Notes — Your second brain, on your devices"
 disableKinds = ["taxonomy", "term"]
 
 [params]
-  description = "MCP Notes is a native macOS Markdown note app with semantic search and a built-in MCP server, so Claude and other AI tools can search your notes during a conversation."
+  description = "MCP Notes is a native macOS Markdown note app with semantic search and a built-in MCP server, so Claude and other AI tools can search your notes during a conversation — and never leaves your devices."
   githubUrl = "https://github.com/sergeydi/MCP-Notes"
   appStoreUrl = "https://apps.apple.com/app/mcp-notes/id6762989069"
 
