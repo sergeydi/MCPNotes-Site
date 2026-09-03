@@ -1,10 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+{{ $title := cond .IsHome site.Title (printf "%s — MCP Notes" .Title) }}
+{{ $desc := .Params.summary | default site.Params.description }}
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }} — MCP Notes{{ end }}</title>
-<meta name="description" content="{{ .Params.summary | default site.Params.description }}">
+<title>{{ $title }}</title>
+<meta name="description" content="{{ $desc }}">
+<link rel="canonical" href="{{ .Permalink }}">
+
+<link rel="icon" type="image/png" sizes="32x32" href="{{ "favicon-32x32.png" | absURL }}">
+<link rel="icon" type="image/png" sizes="16x16" href="{{ "favicon-16x16.png" | absURL }}">
+<link rel="shortcut icon" href="{{ "favicon.ico" | absURL }}">
+<link rel="apple-touch-icon" href="{{ "apple-touch-icon.png" | absURL }}">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="MCP Notes">
+<meta property="og:title" content="{{ $title }}">
+<meta property="og:description" content="{{ $desc }}">
+<meta property="og:url" content="{{ .Permalink }}">
+<meta property="og:image" content="{{ "og-image.png" | absURL }}">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ $title }}">
+<meta name="twitter:description" content="{{ $desc }}">
+<meta name="twitter:image" content="{{ "og-image.png" | absURL }}">
+
+{{ if .IsHome }}
+{{ $ld := dict
+  "@context" "https://schema.org"
+  "@type" "SoftwareApplication"
+  "name" "MCP Notes"
+  "description" $desc
+  "url" .Permalink
+  "operatingSystem" "macOS 26+, iPadOS 26+, iOS 26+"
+  "applicationCategory" "ProductivityApplication"
+  "downloadUrl" site.Params.appStoreUrl
+  "sameAs" (slice site.Params.githubUrl)
+}}
+<script type="application/ld+json">{{ $ld | jsonify | safeJS }}</script>
+{{ end }}
+
 <link rel="stylesheet" href="{{ "css/style.css" | relURL }}">
 </head>
 <body>
