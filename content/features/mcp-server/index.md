@@ -9,11 +9,11 @@ MCP Notes ships with a built-in [Model Context Protocol](https://modelcontextpro
 
 ## What it exposes
 
-The server sits on top of the same [semantic search]({{< relref "semantic-search.md" >}}) index MCP Notes uses internally. When Claude asks a question, it can:
+The server sits on top of the same [semantic search]({{< relref "semantic-search" >}}) index MCP Notes uses internally. When Claude asks a question, it can:
 
 - Search your notes by meaning and get back the most relevant matches.
 - Read the full content of a specific note once it's been found.
-- Follow [wikilinks]({{< relref "wikilinks.md" >}}) between related notes to gather more context.
+- Follow [wikilinks]({{< relref "wikilinks" >}}) between related notes to gather more context.
 
 ## Setup
 

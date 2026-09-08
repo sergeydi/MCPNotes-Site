@@ -17,4 +17,4 @@ Because notes are just Markdown files on disk, you can:
 
 ## Why it matters for AI conversations
 
-Plain files also mean the [MCP server]({{< relref "mcp-server.md" >}}) and [semantic search]({{< relref "semantic-search.md" >}}) index have nothing exotic to reason about — they're indexing the same Markdown files you already own, wherever iCloud has synced them.
+Plain files also mean the [MCP server]({{< relref "mcp-server" >}}) and [semantic search]({{< relref "semantic-search" >}}) index have nothing exotic to reason about — they're indexing the same Markdown files you already own, wherever iCloud has synced them.

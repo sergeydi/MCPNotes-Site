@@ -13,4 +13,4 @@ Every wikilink is also an edge in a force-directed graph view, so you can see cl
 
 ## Why it matters for AI conversations
 
-Wikilinks give the [MCP server]({{< relref "mcp-server.md" >}}) a way to follow context beyond a single note. If the note that answers Claude's query links to another note with more detail, that connection is there to follow — the same way you would, reading it yourself.
+Wikilinks give the [MCP server]({{< relref "mcp-server" >}}) a way to follow context beyond a single note. If the note that answers Claude's query links to another note with more detail, that connection is there to follow — the same way you would, reading it yourself.
