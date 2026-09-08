@@ -2,10 +2,16 @@
 title: "iCloud sync"
 icon: "☁"
 weight: 40
-summary: "Plain .md files that sync automatically across your Mac devices."
+summary: "Plain .md files that sync automatically across your Mac, iPad, and iPhone."
 ---
 
-Notes in MCP Notes are stored as plain `.md` files in your iCloud Drive — not locked into a proprietary database or format. iCloud handles syncing them across your Mac devices the same way it syncs any other file.
+Notes in MCP Notes are stored as plain `.md` files in your iCloud Drive — not locked into a proprietary database or format. iCloud handles syncing them across your Mac, iPad, and iPhone the same way it syncs any other file.
+
+![The same note, "Claude Code Hooks," open in MCP Notes on Mac](icloud-sync-mac.png)
+
+![The same note open in MCP Notes on iPad, synced via iCloud](icloud-sync-ipad.png)
+
+<img class="shot-phone" src="icloud-sync-iphone.png" alt="The same notes list synced to MCP Notes on iPhone">
 
 ## No lock-in
 
