@@ -1,4 +1,4 @@
 ---
 title: "Features"
-summary: "What MCP Notes does: semantic search, an MCP server, wikilinks, and iCloud sync."
+summary: "What MCP Notes does: semantic search, an MCP server, a Markdown editor, wikilinks, and iCloud sync."
 ---
