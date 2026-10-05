@@ -5,6 +5,8 @@ disableKinds = ["taxonomy", "term"]
 [params]
   description = "MCP Notes is a native macOS Markdown note app with semantic search and a built-in MCP server, so Claude and other AI tools can search your notes during a conversation — and never leaves your devices."
   githubUrl = "https://github.com/sergeydi/MCP-Notes"
+  xUrl = "https://x.com/MCPNotesApp"
+  privacyPolicyUrl = "https://www.privacypolicies.com/live/dabbcbfe-c89b-4070-a062-74719d504ea8"
   appStoreUrl = "https://apps.apple.com/app/mcp-notes/id6762989069"
   appStoreId = "6762989069"
 
